@@ -1,5 +1,5 @@
 # vault-consul-tutorial
-Followed [this tutorial](https://medium.com/@pcarion/a-consul-a-vault-and-a-docker-walk-into-a-bar-d5a5bf897a87), but it didn't actually work. So I fixed it and now it works.
+Followed [this tutorial](https://medium.com/@pcarion/a-consul-a-vault-and-a-docker-walk-into-a-bar-d5a5bf897a87), but it didn't actually work. So I fixed it and now it works and all of the things are on the latest versions.
 
 ## Getting it up and running
  - have docker installed obvs
