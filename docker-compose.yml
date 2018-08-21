@@ -14,7 +14,7 @@ services:
     container_name: vault.server
     image: vault:latest
     ports:
-      - "9200:8200"
+      - "8200:8200"
     volumes:
       - ./etc/vault.server/config:/mnt/vault/config
       - ./etc/vault.server/data:/mnt/vault/data
@@ -22,17 +22,17 @@ services:
     cap_add:
       - IPC_LOCK
     environment:
-      - VAULT_LOCAL_CONFIG={"backend":{"consul":{"address":"consul:9500","advertise_addr":"http://vault", "path":"vault"}},"listener":{"tcp":{"address":"0.0.0.0:9200","tls_disable":1}}}
+      - VAULT_LOCAL_CONFIG={"backend":{"consul":{"address":"consul:9500","advertise_addr":"http://vault", "path":"vault"}},"listener":{"tcp":{"address":"0.0.0.0:8200","api_addr":"0.0.0.0:8201","tls_disable":1}}}
     command: server
-  bash_test:
-    build: .
-    container_name: bash.test
-    links:
-      - vault
-      - consul
-    environment:
-      - CONSUL_HTTP_ADDR=consul:9500
-      - VAULT_ADDR=http://vault:9200
-    volumes:
-      - ./etc/bash.test/data:/mnt/data
-    command: tail -f /dev/null
+  # bash_test:
+  #   build: .
+  #   container_name: bash.test
+  #   links:
+  #     - vault
+  #     - consul
+  #   environment:
+  #     - CONSUL_HTTP_ADDR=consul:9500
+  #     - VAULT_ADDR=http://vault:9200
+  #   volumes:
+  #     - ./etc/bash.test/data:/mnt/data
+  #   command: tail -f /dev/null
